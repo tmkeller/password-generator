@@ -1,5 +1,6 @@
-// Assignment Code
+// Assignment Code for generate and toggle_mode buttons
 var generateBtn = document.querySelector("#generate");
+var toggleBtn = document.querySelector("#toggle_mode");
 
 // Write password to the #password input
 function writePassword() {
@@ -11,6 +12,7 @@ function writePassword() {
   }
 }
 
+// This function is responsible for validating user input, compiling the character strings, creating a randomized character string, and returning it to the passwordText binding inside the writePassword function.
 function generatePassword() {
   var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
   var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -61,5 +63,16 @@ function generatePassword() {
   }
 }
 
-// Add event listener to generate button
+// This function enables dark mode by adding CSS classes to page elements.
+function toggleDarkMode() {
+  toggleBtn.addEventListener("click", toggleLightMode);
+}
+
+// This function enables light mode again by removing CSS classes from page elements.
+function toggleLightMode() {
+  toggleBtn.addEventListener("click", toggleDarkMode);
+}
+
+// Add event listener to generate and toggle_mode buttons
 generateBtn.addEventListener("click", writePassword);
+toggleBtn.addEventListener("click", toggleDarkMode);
