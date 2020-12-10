@@ -45,6 +45,7 @@ function generatePassword() {
       for ( var i = 0; i < charNumber; i++ ) {
         var charRand = charList[ Math.floor( Math.random() * (charList.length) ) ];
         passText += charRand;
+        console.log(passText.length);
         console.log(passText);
       }
 
