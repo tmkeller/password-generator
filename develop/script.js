@@ -17,23 +17,38 @@ function generatePassword() {
   var specialCharacters = "\"\\~`!@#$%^&*()_-{}[]|/<>.,:;+='";
   var charList = "";
 
-  if ( confirm( "Include lowercase characters?" ) ) {
-    charList += lowercaseCharacters;
-  }
-  if ( confirm( "Include uppercase characters?" ) ) {
-    charList += uppercaseCharacters;
-  }
-  if ( confirm( "Include numeric characters?" ) ) {
-    charList += numericCharacters;
-  }
-  if ( confirm( "Include special characters?" ) ) {
-    charList += specialCharacters;
-  }
-  
-  if ( !charList ) {
-    alert( "You need to select at least one character type. Please try again.");
+  var charNumber = prompt( "How long should your generated password be? (enter a number between 8 and 128)" );
+
+  if ( charNumber >= 8 && charNumber <= 128 ) {
+
+    if ( confirm( "Include lowercase characters?" ) ) {
+      charList += lowercaseCharacters;
+    }
+    if ( confirm( "Include uppercase characters?" ) ) {
+      charList += uppercaseCharacters;
+    }
+    if ( confirm( "Include numeric characters?" ) ) {
+      charList += numericCharacters;
+    }
+    if ( confirm( "Include special characters?" ) ) {
+      charList += specialCharacters;
+    }
+
+    if ( !charList ) {
+      alert( "You need to select at least one character type. Please try again.");
+    } else {
+      var passText = "";
+      for ( var i = 0; i < charNumber; i++ ) {
+        var charRand = charList[ Math.floor( Math.random() * (charList.length) ) ];
+        passText += charRand;
+        console.log(passText);
+      }
+
+      return passText;
+    }
+
   } else {
-    return charList;
+    alert( "Not a valid number. Please try again." );
   }
 }
 
