@@ -15,12 +15,14 @@ function generatePassword() {
   var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
   var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numericCharacters = "0123456789";
+  // Special characters with special meanings (backslash and quote marks) must be escaped.
   var specialCharacters = "\"\\~`!@#$%^&*()_-{}[]|/<>.,:;+='";
-  var charList = "";
 
   var charNumber = prompt( "How long should your generated password be? (enter a number between 8 and 128)" );
 
   if ( charNumber >= 8 && charNumber <= 128 ) {
+    // charList variable will hold the list of characters we can choose from for a random password.
+    var charList = "";
 
     if ( confirm( "Include lowercase characters?" ) ) {
       charList += lowercaseCharacters;
@@ -38,6 +40,7 @@ function generatePassword() {
     if ( !charList ) {
       alert( "You need to select at least one character type. Please try again.");
     } else {
+      // Generate an empty binding to hold the text of the generated password, then run the random character generation engine.
       var passText = "";
       for ( var i = 0; i < charNumber; i++ ) {
         var charRand = charList[ Math.floor( Math.random() * (charList.length) ) ];
@@ -48,7 +51,7 @@ function generatePassword() {
       return passText;
     }
 
-  } else {
+  } else { // Triggers if user does not enter a number between 8 and 128 (inclusive)
     alert( "Not a valid number. Please try again." );
   }
 }
