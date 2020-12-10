@@ -18,22 +18,28 @@ function generatePassword() {
   // Special characters with special meanings (backslash and quote marks) must be escaped.
   var specialCharacters = "\"\\~`!@#$%^&*()_-{}[]|/<>.,:;+='";
 
-  var charNumber = prompt( "How long should your generated password be? (enter a number between 8 and 128)" );
+  /* var charNumber = prompt( "How long should your generated password be? (enter a number between 8 and 128)" ); */
+
+  var charNumber = document.getElementById("character_number").value;
+  var includeLowerCase = document.getElementById("lowercase_characters").checked;
+  var includeUpperCase = document.getElementById("uppercase_characters").checked;
+  var includeNumeric = document.getElementById("numeric_characters").checked;
+  var includeSpecial = document.getElementById("special_characters").checked;
 
   if ( charNumber >= 8 && charNumber <= 128 ) {
     // charList variable will hold the list of characters we can choose from for a random password.
     var charList = "";
 
-    if ( confirm( "Include lowercase characters?" ) ) {
+    if ( includeLowerCase ) {
       charList += lowercaseCharacters;
     }
-    if ( confirm( "Include uppercase characters?" ) ) {
+    if ( includeUpperCase ) {
       charList += uppercaseCharacters;
     }
-    if ( confirm( "Include numeric characters?" ) ) {
+    if ( includeNumeric ) {
       charList += numericCharacters;
     }
-    if ( confirm( "Include special characters?" ) ) {
+    if ( includeSpecial ) {
       charList += specialCharacters;
     }
 
@@ -51,7 +57,7 @@ function generatePassword() {
     }
 
   } else { // Triggers if user does not enter a number between 8 and 128 (inclusive)
-    alert( "Not a valid number. Please try again." );
+    alert( "You have not entered a valid number of characters. Please try again." );
   }
 }
 
